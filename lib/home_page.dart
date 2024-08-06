@@ -16,13 +16,21 @@ class _HomePageState extends State<HomePage> {
       "Make Tutorials",
       false,
     ],
-    ["Do Exercise", false]
+    ["Do Exercise", true]
   ];
 
   void checkboxChanged(bool? value, int index) {
     setState(() {
       todoList[index][1] = !todoList[index][1];
     });
+  }
+
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog();
+        });
   }
 
   @override
@@ -32,6 +40,11 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Center(child: Text("Todo App")),
           backgroundColor: Colors.yellow,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask,
+          backgroundColor: Colors.yellow,
+          child: const Icon(Icons.add),
         ),
         body: ListView.builder(
           itemCount: todoList.length,
